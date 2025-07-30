@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tripztarr - AI-Powered Travel Planning</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero__content">
+                <h1 class="hero__title">Tripztarr</h1>
+                <p class="hero__subtitle">Create personalized, detailed itineraries with our intelligent AI travel assistant</p>
+                <button class="btn btn--primary btn--lg" onclick="scrollToPlanner()">Start Planning Your Trip</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Planning Form Section -->
+    <main class="main">
+        <div class="container">
+            <section class="planner-section" id="planner">
+                <div class="planner-form-container">
+                    <h2>Plan Your Perfect Trip</h2>
+                    <form class="planner-form" id="plannerForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="destination">Destination</label>
+                                <input type="text" class="form-control" id="destination" placeholder="Where would you like to go?" required>
+                                <div class="destination-suggestions" id="destinationSuggestions"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="duration">Trip Duration (days)</label>
+                                <input type="number" class="form-control" id="duration" min="1" max="30" value="5" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="startDate">Start Date</label>
+                                <input type="date" class="form-control" id="startDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="groupSize">Number of Travelers</label>
+                                <select class="form-control" id="groupSize" required>
+                                    <option value="1">1 Traveler</option>
+                                    <option value="2" selected>2 Travelers</option>
+                                    <option value="3">3 Travelers</option>
+                                    <option value="4">4 Travelers</option>
+                                    <option value="5">5 Travelers</option>
+                                    <option value="6">6+ Travelers</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="budgetAmount">Budget (₹ per person)</label>
+                            <input type="number" class="form-control" id="budgetAmount" placeholder="Enter your budget in INR" min="1000" step="500" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Travel Style</label>
+                            <div class="budget-options">
+                                <label class="budget-option">
+                                    <input type="radio" name="travelStyle" value="Budget" checked>
+                                    <span class="budget-card">
+                                        <strong>Budget</strong>
+                                        <span>₹4,000-8,000/day</span>
+                                    </span>
+                                </label>
+                                <label class="budget-option">
+                                    <input type="radio" name="travelStyle" value="Mid-range">
+                                    <span class="budget-card">
+                                        <strong>Mid-range</strong>
+                                        <span>₹8,000-20,000/day</span>
+                                    </span>
+                                </label>
+                                <label class="budget-option">
+                                    <input type="radio" name="travelStyle" value="Luxury">
+                                    <span class="budget-card">
+                                        <strong>Luxury</strong>
+                                        <span>₹20,000+/day</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Interests & Preferences (select all that apply)</label>
+                            <div class="travel-styles">
+                                <label class="travel-style">
+                                    <input type="checkbox" name="interests" value="Adventure">
+                                    <span class="travel-style-card">
+                                        <span class="travel-style-icon">🏔️</span>
+                                        <span>Adventure</span>
+                                    </span>
+                                </label>
+                                <label class="travel-style">
+                                    <input type="checkbox" name="interests" value="Culture">
+                                    <span class="travel-style-card">
+                                        <span class="travel-style-icon">🏛️</span>
+                                        <span>Culture</span>
+                                    </span>
+                                </label>
+                                <label class="travel-style">
+                                    <input type="checkbox" name="interests" value="Food">
+                                    <span class="travel-style-card">
+                                        <span class="travel-style-icon">🍜</span>
+                                        <span>Food</span>
+                                    </span>
+                                </label>
+                                <label class="travel-style">
+                                    <input type="checkbox" name="interests" value="Relaxation">
+                                    <span class="travel-style-card">
+                                        <span class="travel-style-icon">🧘</span>
+                                        <span>Relaxation</span>
+                                    </span>
+                                </label>
+                                <label class="travel-style">
+                                    <input type="checkbox" name="interests" value="Shopping">
+                                    <span class="travel-style-card">
+                                        <span class="travel-style-icon">🛍️</span>
+                                        <span>Shopping</span>
+                                    </span>
+                                </label>
+                                <label class="travel-style">
+                                    <input type="checkbox" name="interests" value="Nightlife">
+                                    <span class="travel-style-card">
+                                        <span class="travel-style-icon">🎭</span>
+                                        <span>Nightlife</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="specialRequirements">Special Requirements</label>
+                            <textarea class="form-control" id="specialRequirements" rows="3" placeholder="Dietary restrictions, accessibility needs, specific interests, or other requirements..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn--primary btn--full-width btn--lg">
+                            Generate AI-Powered Itinerary
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Loading Section -->
+            <section class="loading-section hidden" id="loadingSection">
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <h3>Creating Your Perfect Itinerary...</h3>
+                    <p class="loading-text">Our AI is analyzing your preferences and generating personalized recommendations</p>
+                    <div class="loading-progress">
+                        <div class="loading-progress-bar" id="loadingProgress"></div>
+                    </div>
+                    <p class="loading-step" id="loadingStep">Analyzing destination...</p>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section hidden" id="resultsSection">
+                <div class="results-header">
+                    <h2>Your Personalized Itinerary</h2>
+                    <div class="results-actions">
+                        <button class="btn btn--outline" onclick="exportToPDF()">Export PDF</button>
+                        <button class="btn btn--outline" onclick="shareItinerary()">Share</button>
+                        <button class="btn btn--secondary" onclick="startNewTrip()">Plan Another Trip</button>
+                    </div>
+                </div>
+
+                <div class="results-tabs">
+                    <button class="tab-button active" onclick="showTab('overview')">Overview</button>
+                    <button class="tab-button" onclick="showTab('itinerary')">Daily Itinerary</button>
+                    <button class="tab-button" onclick="showTab('hotels')">Hotels</button>
+                    <button class="tab-button" onclick="showTab('restaurants')">Restaurants</button>
+                    <button class="tab-button" onclick="showTab('guide')">Travel Guide</button>
+                </div>
+
+                <div class="tab-content active" id="overview-tab">
+                    <div class="overview-grid">
+                        <div class="overview-card">
+                            <h3>Trip Summary</h3>
+                            <div id="tripSummary"></div>
+                        </div>
+                        <div class="overview-card">
+                            <h3>Budget Breakdown</h3>
+                            <div id="budgetBreakdown"></div>
+                        </div>
+                        <div class="overview-card">
+                            <h3>Quick Stats</h3>
+                            <div id="quickStats"></div>
+                        </div>
+                        <div class="overview-card">
+                            <h3>Weather & Best Times</h3>
+                            <div id="weatherInfo"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="itinerary-tab">
+                    <div class="daily-itinerary" id="dailyItinerary"></div>
+                </div>
+
+                <div class="tab-content" id="hotels-tab">
+                    <div class="hotels-grid" id="hotelsGrid"></div>
+                </div>
+
+                <div class="tab-content" id="restaurants-tab">
+                    <div class="restaurants-content" id="restaurantsContent"></div>
+                </div>
+
+                <div class="tab-content" id="guide-tab">
+                    <div class="travel-guide" id="travelGuide"></div>
+                </div>
+            </section>
+
+            <!-- Chat Assistant -->
+            <div class="chat-assistant" id="chatAssistant">
+                <div class="chat-header">
+                    <h4>AI Travel Assistant</h4>
+                    <button class="chat-toggle" onclick="toggleChat()">−</button>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <div class="chat-message assistant">
+                        <p>Hi! I'm your AI travel assistant. Ask me anything about your itinerary or travel plans!</p>
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" placeholder="Ask about your trip..." id="chatInput">
+                    <button onclick="sendChatMessage()" class="btn btn--primary">Send</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Home Button -->
+    <div class="home-button" onclick="window.location.href='#home'">
+        <span>🏠</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Tripztarr. Powered by Google Gemini AI.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
