@@ -14,7 +14,7 @@
   --color-slate-900: rgba(19, 52, 59, 1);
   --color-teal-300: rgba(50, 184, 198, 1);
   --color-teal-400: rgba(45, 166, 178, 1);
-  --color-teal-500: rgba(33, 128, 141, 1);
+  --color-teal-500: rgb(18 75 83);
   --color-teal-600: rgba(29, 116, 128, 1);
   --color-teal-700: rgba(26, 104, 115, 1);
   --color-teal-800: rgba(41, 150, 161, 1);
@@ -155,7 +155,7 @@
 
     /* Background color tokens (Dark Mode) */
     --color-bg-1: rgba(29, 78, 216, 0.15); /* Dark blue */
-    --color-bg-2: rgba(180, 83, 9, 0.15); /* Dark yellow */
+    --color-bg-2: : rgb(6 24 59 / 26%); /* Dark yellow */
     --color-bg-3: rgba(21, 128, 61, 0.15); /* Dark green */
     --color-bg-4: rgba(185, 28, 28, 0.15); /* Dark red */
     --color-bg-5: rgba(107, 33, 168, 0.15); /* Dark purple */
